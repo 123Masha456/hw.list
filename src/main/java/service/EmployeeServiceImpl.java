@@ -5,34 +5,36 @@ import com.example.springlist.exceptions.EmployeeNotFoundException;
 import com.example.springlist.exceptions.EmployeeStorageIsFullException;
 import dto.Employee;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class EmployeeServiceImpl implements EmployeeService {
     private List<Employee> employees;
+    private final Map<String, Employee> employeesMap;
     private static final int EMPLOYEES_MAX_SIZE = 15;
 
     public EmployeeServiceImpl() {
         this.employees = new ArrayList<>();
+        this.employeesMap = new HashMap<>();
     }
 
     @Override
     public Employee addEmployee(String name, String lastName) {
-        if (employees.size() == EMPLOYEES_MAX_SIZE) {
+        if (employeesMap.size() == EMPLOYEES_MAX_SIZE) {
             throw new EmployeeStorageIsFullException("Превышен лимит количества сотрудников");
         }
         Employee employee = new Employee(name, lastName);
-        if (employees.contains(employee)) {
+        String key = name + lastName;
+        if (employees.contains(key)) {
             throw new EmployeeAlreadyAddedException("В коллекции уже есть такой сотрудник");
         }
-        employees.add(employee);
+        employeesMap.put(key, employee);
         return employee;
     }
 
     @Override
     public Employee removeEmployee(String name, String lastName) {
-        Employee employee = new Employee(name, lastName);
-        if (!employees.remove(employee)) {
+        Employee employee = employeesMap.remove(name + lastName);
+        if (employee  == null) {
             throw new EmployeeNotFoundException("Сотрудник не найден");
         }
         return employee;
@@ -40,16 +42,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findEmployee(String name, String lastName) {
-        Employee employee = new Employee(name, lastName);
-        if (!employees.contains(employee)) {
+        Employee employee = employeesMap.get(name + lastName);
+        if (employee == null) {
             throw new EmployeeNotFoundException("Сотрудник не найден");
         }
         return employee;
     }
 
     @Override
-    public List<Employee> findAll(){
-        return employees;
+    public Collection<Employee> findAll(){
+        return employeesMap.values();
     }
 
 }

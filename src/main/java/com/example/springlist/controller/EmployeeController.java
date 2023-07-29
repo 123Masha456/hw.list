@@ -12,16 +12,18 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping(path = "/employee")
-public class EmployeeController{
+public class EmployeeController {
     public final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
+
     @GetMapping(path = "/add")
-    public Employee add(@RequestParam String name, @RequestParam String lastName){
-        return employeeService.addEmployee(name,lastName);
+    public Employee add(@RequestParam String name, @RequestParam String lastName,
+                        @RequestParam int department, @RequestParam int salary){
+        return employeeService.addEmployee(name,lastName,department, salary);
     }
     @GetMapping(path = "/remove")
     public Employee remove(@RequestParam String name, @RequestParam String lastName){

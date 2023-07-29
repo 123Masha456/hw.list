@@ -4,9 +4,11 @@ import com.example.springlist.exceptions.EmployeeAlreadyAddedException;
 import com.example.springlist.exceptions.EmployeeNotFoundException;
 import com.example.springlist.exceptions.EmployeeStorageIsFullException;
 import dto.Employee;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
     private List<Employee> employees;
     private final Map<String, Employee> employeesMap;
@@ -18,11 +20,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee addEmployee(String name, String lastName) {
+    public Employee addEmployee(String name, String lastName, int department, int salary) {
         if (employeesMap.size() == EMPLOYEES_MAX_SIZE) {
             throw new EmployeeStorageIsFullException("Превышен лимит количества сотрудников");
         }
-        Employee employee = new Employee(name, lastName);
+        Employee employee = new Employee(name, lastName, department, salary);
         String key = name + lastName;
         if (employees.contains(key)) {
             throw new EmployeeAlreadyAddedException("В коллекции уже есть такой сотрудник");
@@ -34,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee removeEmployee(String name, String lastName) {
         Employee employee = employeesMap.remove(name + lastName);
-        if (employee  == null) {
+        if (employee == null) {
             throw new EmployeeNotFoundException("Сотрудник не найден");
         }
         return employee;
@@ -50,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Collection<Employee> findAll(){
+    public Collection<Employee> findAll() {
         return employeesMap.values();
     }
 

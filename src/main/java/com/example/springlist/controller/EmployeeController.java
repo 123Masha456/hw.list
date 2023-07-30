@@ -1,6 +1,7 @@
 package com.example.springlist.controller;
 
 import dto.Employee;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,19 +23,22 @@ public class EmployeeController {
 
     @GetMapping(path = "/add")
     public Employee add(@RequestParam String name, @RequestParam String lastName,
-                        @RequestParam int department, @RequestParam int salary){
-        return employeeService.addEmployee(name,lastName,department, salary);
+                        @RequestParam int department, @RequestParam int salary) {
+        return employeeService.addEmployee(name, lastName, department, salary);
     }
+
     @GetMapping(path = "/remove")
-    public Employee remove(@RequestParam String name, @RequestParam String lastName){
+    public Employee remove(@RequestParam String name, @RequestParam String lastName) {
         return employeeService.removeEmployee(name, lastName);
     }
+
     @GetMapping(path = "/find")
-    public Employee find(@RequestParam String name, @RequestParam String lastName){
+    public Employee find(@RequestParam String name, @RequestParam String lastName) {
         return employeeService.findEmployee(name, lastName);
     }
+
     @GetMapping
-    public Collection<Employee> findAll(){
+    public Collection<Employee> findAll() {
         return employeeService.findAll();
     }
 

@@ -34,16 +34,19 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public int getDepartment(){
+    public int getDepartment() {
         return this.department;
     }
-    public void setDepartment(int department){
+
+    public void setDepartment(int department) {
         this.department = department;
     }
-    public int getSalary(){
+
+    public int getSalary() {
         return this.salary;
     }
-    public void setSalary(int salary){
+
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
@@ -53,23 +56,24 @@ public class Employee {
         return "Сотрудник " + lastName + " " + name;
     }
 
-       @Override
-        public boolean equals(Object o){
-        if(o == null){
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
             return false;
         }
-        if(this == o){
+        if (this == o) {
             return true;
         }
-        if (this.getClass() != o.getClass()){
+        if (this.getClass() != o.getClass()) {
             return false;
         }
         Employee employee = (Employee) o;
-        return  name.equals(employee.getName()) && lastName.equals(employee.getLastName());
-        }
-        @Override
-    public int hashCode(){
+        return name.equals(employee.getName()) && lastName.equals(employee.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
         return Objects.hash(name, lastName);
-        }
+    }
 }
 

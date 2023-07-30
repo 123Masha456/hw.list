@@ -23,7 +23,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return employeeService.findAll().stream()
                 .filter(employee -> employee.getDepartment() == department)
                 .max(Comparator.comparingDouble(employee -> employee.getSalary()))
-                .orElseThrow(()-> new EmployeeNotFoundException("Такой сотрудник не найден"));
+                .orElseThrow(() -> new EmployeeNotFoundException("Такой сотрудник не найден"));
     }
 
     @Override
@@ -31,7 +31,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return employeeService.findAll().stream()
                 .filter(employee -> employee.getDepartment() == department)
                 .min(Comparator.comparingDouble(employee -> employee.getSalary()))
-                .orElseThrow(()-> new EmployeeNotFoundException("Такой сотрудник не найден"));
+                .orElseThrow(() -> new EmployeeNotFoundException("Такой сотрудник не найден"));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Map<Integer, List<Employee>> getAllGroupingBy(int department) {
+    public Map<Integer, List<Employee>> getAllGroupingBy() {
         return employeeService.findAll().stream()
                 .collect(Collectors.groupingBy(employee -> employee.getDepartment()));
     }

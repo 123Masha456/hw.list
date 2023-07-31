@@ -1,9 +1,9 @@
-package service;
+package com.example.springlist.service;
 
 import com.example.springlist.exceptions.EmployeeAlreadyAddedException;
 import com.example.springlist.exceptions.EmployeeNotFoundException;
 import com.example.springlist.exceptions.EmployeeStorageIsFullException;
-import dto.Employee;
+import com.example.springlist.dto.Employee;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

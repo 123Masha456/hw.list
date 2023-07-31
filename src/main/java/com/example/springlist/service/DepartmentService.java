@@ -1,6 +1,6 @@
-package service;
+package com.example.springlist.service;
 
-import dto.Employee;
+import com.example.springlist.dto.Employee;
 
 
 import java.util.Collection;

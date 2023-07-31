@@ -1,11 +1,11 @@
 package com.example.springlist.controller;
 
-import dto.Employee;
+import com.example.springlist.dto.Employee;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import service.DepartmentService;
+import com.example.springlist.service.DepartmentService;
 
 import java.util.Collection;
 import java.util.List;

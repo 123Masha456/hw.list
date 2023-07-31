@@ -1,4 +1,4 @@
-package dto;
+package com.example.springlist.dto;
 
 import java.util.Objects;
 

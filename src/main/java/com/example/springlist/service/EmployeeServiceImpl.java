@@ -4,6 +4,7 @@ import com.example.springlist.exceptions.EmployeeAlreadyAddedException;
 import com.example.springlist.exceptions.EmployeeNotFoundException;
 import com.example.springlist.exceptions.EmployeeStorageIsFullException;
 import com.example.springlist.dto.Employee;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -24,7 +25,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employeesMap.size() == EMPLOYEES_MAX_SIZE) {
             throw new EmployeeStorageIsFullException("Превышен лимит количества сотрудников");
         }
-        Employee employee = new Employee(name, lastName, department, salary);
+        Employee employee = new Employee(
+                StringUtils.capitalize(name),
+                StringUtils.capitalize(lastName),
+                department,
+                salary);
         String key = name + lastName;
         if (employees.contains(key)) {
             throw new EmployeeAlreadyAddedException("В коллекции уже есть такой сотрудник");

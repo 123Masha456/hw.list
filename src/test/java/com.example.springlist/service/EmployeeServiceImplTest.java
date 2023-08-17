@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 
 
 import javax.lang.model.element.UnknownDirectiveException;
+import javax.swing.text.html.StyleSheet;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -96,6 +100,13 @@ class EmployeeServiceImplTest {
     void findAll_allEmployeeInMap_returnedAllEmployees() {
         underTest.addEmployee(employee.getLastName(), employee.getName(),
                 employee.getDepartment(), employee.getSalary());
-        assertTrue(underTest.findAll().contains(employee));
+        underTest.addEmployee(employee2.getLastName(), employee2.getName(),
+                employee2.getDepartment(), employee2.getSalary());
+
+        Collection<Employee> result = underTest.findAll();
+        result.stream().collect(Collectors.toList());
+
+        assertEquals(List.of(employee, employee2), result);
+        assertFalse(underTest.findAll().contains(Collections.emptyList()));
     }
 }

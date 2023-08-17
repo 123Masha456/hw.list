@@ -74,6 +74,6 @@ public class DepartmentServiceImplTest {
     void getAllGroupingByDepartment_employeesFound_returnEmployeesInEachDepartment() {
         when(employeeService.findAll()).thenReturn(employees);
         Map<Integer, List<Employee>> result = underTest.getAllGroupingBy();
-        assertEquals(Map.of(1, List.of(ivan, petr), 2, klara), result);
+        assertEquals(Map.of(1, List.of(ivan, petr), 2, List.of(klara)), result);
     }
 }

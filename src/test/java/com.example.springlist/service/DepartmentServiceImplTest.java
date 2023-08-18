@@ -20,7 +20,6 @@ public class DepartmentServiceImplTest {
     EmployeeService employeeService;
     @InjectMocks
     DepartmentServiceImpl underTest;
-
     Employee ivan = new Employee("IVANOV", "IVAN", 1, 20000);
     Employee petr = new Employee("PETROV", "PETR", 1, 30000);
     Employee klara = new Employee("KLAROVA", "KLARA", 2, 40000);

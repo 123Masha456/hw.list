@@ -104,9 +104,7 @@ class EmployeeServiceImplTest {
                 employee2.getDepartment(), employee2.getSalary());
 
         Collection<Employee> result = underTest.findAll();
-        result.stream().collect(Collectors.toList());
-
-        assertEquals(List.of(employee, employee2), result);
+        assertIterableEquals(List.of(employee, employee2), result);
         assertFalse(underTest.findAll().contains(Collections.emptyList()));
     }
 }

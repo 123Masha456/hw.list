@@ -6,7 +6,6 @@ import com.example.springlist.dto.Employee;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
 public interface DepartmentService {
     Employee findMaxSalaryEmployee(int department);
 
